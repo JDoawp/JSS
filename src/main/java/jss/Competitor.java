@@ -3,9 +3,9 @@ package jss;
 public class Competitor {
     private String name;
     private String startTime;
-    private int milliTime = 0;
     private String finishTime;
-    public Timer timer;
+    private String time = null;
+
 
     Competitor(String name, String startTime, String finishTime){
         this.name = name;
@@ -18,14 +18,12 @@ public class Competitor {
     }
     public String getStartTime(){return startTime;}
     public String getFinishTime(){return finishTime;}
-
-    public int getMilliTime(){return milliTime;}
+    public String getTime(){return time;}
 
     public void setName(String name){
         this.name = name;
     }
-
-    public void setFinishTime(){
-        finishTime = timer.getTime();
-    }
+    public void setTime(String time){
+        this.time = time;
+    };
 }

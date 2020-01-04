@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/Main.fxml"));
         primaryStage.setTitle("Skid Timer");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(new Scene(root, 450, 520));
         primaryStage.setResizable(false);
         primaryStage.show();
     }
