@@ -1,7 +1,9 @@
 package jss;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -10,30 +12,43 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Controller {
+    public Label lblTimer;
     private Date date;
+    public Button btnAdd;
     public Button btnStop;
     public Button btnStart;
-    public Button btnAdd;
     public RadioButton radioMass;
     public RadioButton radioHunting;
     public RadioButton radio15;
     public RadioButton radio30;
     public RadioButton radioIndividual;
     public TextField txtName;
-    @FXML TableView tblTimer = new TableView<>();
-    @FXML TableColumn tblName = new TableColumn();
-    @FXML TableColumn tblStartTime = new TableColumn();
-    @FXML TableColumn tblEndTime = new TableColumn();
+    private ArrayList<Competitor> competitorArray = new ArrayList<>();
+    @FXML TableView<Competitor> tblTable = new TableView<>();
+    @FXML TableColumn clmName = new TableColumn();
+    @FXML TableColumn clmStartTime = new TableColumn();
+    @FXML TableColumn clmEndTime = new TableColumn();
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     private NumberFormat numberFormat = new DecimalFormat("#0.00");
 
-    private ArrayList<Timer> timerArray = new ArrayList<>();
-
     public void initialize(){
+        clmName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        //clmStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        //clmEndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+
+        competitorArray.add(new Competitor("John Doe"));
     }
 
 
-    Competitor johnDoe = new Competitor("John Doe");
 
+    public void btnAdd(){
+        tblTable.getItems().add(competitorArray.get(competitorArray.size()-1));
+        System.out.println("Added dude");
+    }
 
+    public void btnStop(ActionEvent actionEvent) {
+    }
+
+    public void btnStart(ActionEvent actionEvent) {
+    }
 }

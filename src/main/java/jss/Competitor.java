@@ -1,8 +1,10 @@
 package jss;
 
-class Competitor {
+public class Competitor {
     private String name;
     private int milliTime = 0;
+    private String finishTime;
+    public Timer timer = new Timer();
 
     Competitor(String name){
         this.name = name;
@@ -15,5 +17,9 @@ class Competitor {
 
     public void setName(String name){
         this.name = name;
+    }
+
+    public void setFinishTime(){
+        finishTime = timer.getTime();
     }
 }

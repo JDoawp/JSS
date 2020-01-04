@@ -4,6 +4,7 @@ class Timer {
     private String date;
     private String time;
     private int startTime;
+    private String endTime;
 
     Timer(){
         this(null, null, 0);
