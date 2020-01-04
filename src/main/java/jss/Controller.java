@@ -1,15 +1,18 @@
 package jss;
 
-import javafx.event.ActionEvent;
+import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimerTask;
 
 public class Controller {
     public Label lblTimer;
@@ -30,26 +33,71 @@ public class Controller {
     @FXML TableColumn clmStartTime = new TableColumn();
     @FXML TableColumn clmEndTime = new TableColumn();
     private SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-    private NumberFormat numberFormat = new DecimalFormat("#0.00");
+    private NumberFormat secondFormat = new DecimalFormat("00.00");
+    private NumberFormat timeFormat = new DecimalFormat("00");
+    private boolean started = false;
+
+    long startTime;
+    long elapsedTime;
+    int elapsedSeconds;
 
     public void initialize(){
         clmName.setCellValueFactory(new PropertyValueFactory<>("name"));
         clmStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         clmEndTime.setCellValueFactory(new PropertyValueFactory<>("finishTime"));
+
+        new AnimationTimer(){
+            @Override
+            public void handle(long l) {
+                if(started) {
+                    elapsedTime = System.currentTimeMillis() - startTime;
+                    elapsedSeconds = (int) (elapsedTime / 1000);
+                    double elapsedMinutes = elapsedSeconds / 60;
+                    double elapsedHours = elapsedMinutes / 60;
+
+                    lblTimer.setText((int)elapsedHours + ":" + timeFormat.format(elapsedMinutes) + ":" + secondFormat.format((Math.floor(elapsedTime/10) / 100)%60).replace(',', '.'));
+                }
+            }
+        }.start();
     }
 
     int additionalStartTime = 0;
     public void btnAdd(){
-        competitorArray.add(new Competitor(txtName.getText(),dateFormat.format(new Date()), null));
+        competitorArray.add(new Competitor(txtName.getText(), additionalStartTime));
         additionalStartTime += 30;
 
         tblTable.getItems().add(competitorArray.get(competitorArray.size()-1));
-        System.out.println("Added dude");
+        System.out.println("Added competitor: " +competitorArray.get(competitorArray.size()-1).toString());
+    }
+
+
+    public void btnStart() {
+        timerToggle();
     }
 
     public void btnStop() {
+        timerToggle();;
     }
 
-    public void btnStart() {
+    private void timerToggle(){
+        if(!started){
+            startTime = System.currentTimeMillis();
+            System.out.println("startTime in millis: " +startTime);
+            System.out.println("Timer On");
+            started = true;
+
+            btnAdd.setDisable(true);
+            btnStart.setDisable(true);
+            btnStop.setDisable(false);
+        }else{
+            started = false;
+            System.out.println("stopTime in millis: " +System.currentTimeMillis());
+            System.out.println("Milli time difference: " +(System.currentTimeMillis() - startTime) +" Second time difference: " +(System.currentTimeMillis() - startTime)/1000);
+            System.out.println("Timer off");
+
+            btnAdd.setDisable(false);
+            btnStart.setDisable(false);
+            btnStop.setDisable(true);
+        }
     }
 }

@@ -98,7 +98,7 @@
             </Button>
          </children>
       </HBox>
-      <Label fx:id="lblTimer" alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="450.0" text="00:00:00">
+      <Label fx:id="lblTimer" alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="450.0" text="0:00:00.00">
          <font>
             <Font size="45.0" />
          </font>
@@ -106,8 +106,9 @@
       <TableView fx:id="tblTable" prefHeight="275.0" prefWidth="350.0">
         <columns>
           <TableColumn fx:id="clmName" editable="false" prefWidth="170.0" resizable="false" sortable="false" text="Namn" />
-          <TableColumn fx:id="clmStartTime" editable="false" prefWidth="149.0" resizable="false" sortable="false" text="Start Tid" />
-            <TableColumn fx:id="clmEndTime" editable="false" prefWidth="130.0" resizable="false" sortable="false" text="Slut Tid" />
+          <TableColumn fx:id="clmStartTime" editable="false" prefWidth="90.0" resizable="false" sortable="false" text="Start Tid" />
+            <TableColumn fx:id="clmEndTime" editable="false" prefWidth="90.0" resizable="false" sortable="false" text="Slut Tid" />
+            <TableColumn fx:id="clmTime" editable="false" prefWidth="100.0" resizable="false" sortable="false" text="Tid" />
         </columns>
          <VBox.margin>
             <Insets top="20.0" />

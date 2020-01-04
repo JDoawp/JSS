@@ -3,14 +3,14 @@ package jss;
 public class Competitor {
     private String name;
     private String startTime;
-    private String finishTime;
+    private String finishTime = null;
     private String time = null;
+    private int timeOffset;
 
 
-    Competitor(String name, String startTime, String finishTime){
+    Competitor(String name, int timeOffset){
         this.name = name;
-        this.startTime = startTime;
-        this.finishTime = finishTime;
+        this.timeOffset = timeOffset;
     }
 
     public String getName() {
@@ -26,4 +26,9 @@ public class Competitor {
     public void setTime(String time){
         this.time = time;
     };
+
+    @Override
+    public String toString() {
+        return name +" with timeOffset: " +timeOffset +" seconds.";
+    }
 }
