@@ -6,18 +6,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
-import java.util.TimerTask;
 
-public class Controller {
+public class Controller {   //Inits some UI things along with variables.
     public Label lblTimer;
     public TableColumn clmTime;
-    private Date date;
     public Button btnAdd;
     public Button btnStop;
     public Button btnStart;
@@ -36,12 +32,11 @@ public class Controller {
     private NumberFormat secondFormat = new DecimalFormat("00.00");
     private NumberFormat timeFormat = new DecimalFormat("00");
     private boolean started = false;
+    private long startTime;
+    private long elapsedTime;
+    private int elapsedSeconds;
 
-    long startTime;
-    long elapsedTime;
-    int elapsedSeconds;
-
-    public void initialize(){
+    public void initialize(){   //Init the table columns, and set the timer.
         clmName.setCellValueFactory(new PropertyValueFactory<>("name"));
         clmStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         clmEndTime.setCellValueFactory(new PropertyValueFactory<>("finishTime"));
@@ -62,7 +57,7 @@ public class Controller {
     }
 
     int additionalStartTime = 0;
-    public void btnAdd(){
+    public void btnAdd(){   //Adds a competitor from the text field.
         competitorArray.add(new Competitor(txtName.getText(), additionalStartTime));
         additionalStartTime += 30;
 
@@ -79,7 +74,7 @@ public class Controller {
         timerToggle();;
     }
 
-    private void timerToggle(){
+    private void timerToggle(){ //Toggles between the timer being 'on' and not.
         if(!started){
             startTime = System.currentTimeMillis();
             System.out.println("startTime in millis: " +startTime);
