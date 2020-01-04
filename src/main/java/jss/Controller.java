@@ -33,15 +33,17 @@ public class Controller {
 
     public void initialize(){
         clmName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        //clmStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-        //clmEndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        clmStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        clmEndTime.setCellValueFactory(new PropertyValueFactory<>("finishTime"));
 
-        competitorArray.add(new Competitor("John Doe"));
+
     }
 
-
-
+    int additionalStartTime = 0;
     public void btnAdd(){
+        competitorArray.add(new Competitor(txtName.getText(), String.valueOf(additionalStartTime), null));
+        additionalStartTime += 30;
+
         tblTable.getItems().add(competitorArray.get(competitorArray.size()-1));
         System.out.println("Added dude");
     }

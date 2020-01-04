@@ -34,7 +34,7 @@
                <children>
                   <VBox prefHeight="150.0" prefWidth="140.0">
                      <children>
-                        <RadioButton fx:id="radioMass" mnemonicParsing="false" prefHeight="17.0" text="Mass Start">
+                        <RadioButton fx:id="radioMass" mnemonicParsing="false" prefHeight="17.0" selected="true" text="Mass Start">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
