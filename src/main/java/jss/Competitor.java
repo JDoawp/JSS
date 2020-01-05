@@ -25,6 +25,7 @@ public class Competitor {
     public String getStartTime() {
         return startTime;
     }
+    public int getTimeOffset(){return timeOffset;}
 
 
     public void setName(String name){

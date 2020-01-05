@@ -45,6 +45,7 @@ public class Controller {   //Inits some UI things along with variables.
 
     public void initialize(){   //Init the table columns, and set the timer.
         clmName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        clmOffset.setCellValueFactory(new PropertyValueFactory<>("timeOffset"));
         clmStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         clmEndTime.setCellValueFactory(new PropertyValueFactory<>("finishTime"));
 
@@ -66,7 +67,15 @@ public class Controller {   //Inits some UI things along with variables.
     int additionalStartTime = 0;
     public void btnAdd(){   //Adds a competitor from the text field.
         xml.add(new Competitor(txtName.getText(), additionalStartTime));
-        if()
+        if(radioHunting.isSelected()){
+            if(radio15.isSelected()){
+                additionalStartTime += 15;
+                radio30.setDisable(true);
+            }else{
+                additionalStartTime += 30;
+                radio15.setDisable(true);
+            }
+        }
 
         tblTable.getItems().add(xml.get(xml.size()-1));
         System.out.println("Added competitor: " +xml.get(xml.size()-1).toString());
