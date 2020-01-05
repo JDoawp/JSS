@@ -23,7 +23,7 @@ public class Controller {   //Inits some UI things along with variables.
     public RadioButton radio30;
     public RadioButton radioIndividual;
     public TextField txtName;
-    private ArrayList<Competitor> competitorArray = new ArrayList<>();
+    public TableColumn clmOffset;
     @FXML TableView<Competitor> tblTable = new TableView<>();
     @FXML TableColumn clmName = new TableColumn();
     @FXML TableColumn clmStartTime = new TableColumn();
@@ -31,10 +31,17 @@ public class Controller {   //Inits some UI things along with variables.
     private SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     private NumberFormat secondFormat = new DecimalFormat("00.00");
     private NumberFormat timeFormat = new DecimalFormat("00");
+
     private boolean started = false;
     private long startTime;
     private long elapsedTime;
     private int elapsedSeconds;
+    XMLHandler xml = new XMLHandler();
+
+    //TODO add saving and loading through XML,
+    // Add functionality for different types of starts
+    // Add actual start and stop functionality for competitors (start the timer with the first competitor and end it with the last one)
+    // ,
 
     public void initialize(){   //Init the table columns, and set the timer.
         clmName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -47,10 +54,10 @@ public class Controller {   //Inits some UI things along with variables.
                 if(started) {
                     elapsedTime = System.currentTimeMillis() - startTime;
                     elapsedSeconds = (int) (elapsedTime / 1000);
-                    double elapsedMinutes = elapsedSeconds / 60;
-                    double elapsedHours = elapsedMinutes / 60;
+                    int elapsedMinutes = elapsedSeconds / 60;
+                    int elapsedHours = elapsedMinutes / 60;
 
-                    lblTimer.setText((int)elapsedHours + ":" + timeFormat.format(elapsedMinutes) + ":" + secondFormat.format((Math.floor(elapsedTime/10) / 100)%60).replace(',', '.'));
+                    lblTimer.setText(elapsedHours + ":" + timeFormat.format(elapsedMinutes) + ":" + secondFormat.format((Math.floor(elapsedTime/10.0) / 100)%60).replace(',', '.'));
                 }
             }
         }.start();
@@ -58,13 +65,12 @@ public class Controller {   //Inits some UI things along with variables.
 
     int additionalStartTime = 0;
     public void btnAdd(){   //Adds a competitor from the text field.
-        competitorArray.add(new Competitor(txtName.getText(), additionalStartTime));
-        additionalStartTime += 30;
+        xml.add(new Competitor(txtName.getText(), additionalStartTime));
+        if()
 
-        tblTable.getItems().add(competitorArray.get(competitorArray.size()-1));
-        System.out.println("Added competitor: " +competitorArray.get(competitorArray.size()-1).toString());
+        tblTable.getItems().add(xml.get(xml.size()-1));
+        System.out.println("Added competitor: " +xml.get(xml.size()-1).toString());
     }
-
 
     public void btnStart() {
         timerToggle();
