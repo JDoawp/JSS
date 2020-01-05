@@ -2,10 +2,11 @@ package jss;
 
 public class Competitor {
     private String name;
-    private String lasttime = null;
-    private String startTime = null;
-    private String finishTime = null;
+    private String startClock = null;
+    private String finishClock = null;
+    private String elapsedTime = null;
     private boolean skiing = false;
+    private long lastTime;
     private int timeOffset;
 
 
@@ -17,25 +18,34 @@ public class Competitor {
     public String getName() {
         return name;
     }
-    public String getLasttime(){return lasttime;}
+    public double getLastTime(){return lastTime;}
     public boolean isSkiing(){return skiing;}
-    public String getFinishTime() {
-        return finishTime;
+    public String getFinishClock() {
+        return finishClock;
     }
-    public String getStartTime() {
-        return startTime;
+    public String getStartClock() {
+        return startClock;
+    }
+    public String getElapsedTime(){
+        return elapsedTime;
     }
     public int getTimeOffset(){return timeOffset;}
 
-
-    public void setName(String name){
-        this.name = name;
-    }
-    public void setLasttime(String lasttime){
-        this.lasttime = lasttime;
+    public void setLastTime(long lastTime){
+        this.lastTime = lastTime;
     }
     public void setSkiing(Boolean skiing){
         this.skiing = skiing;
+    }
+    public void setStartClock(String startClock){
+        this.startClock = startClock;
+    }
+    public void setFinishClock(String finishClock){
+        this.finishClock = finishClock;
+    }
+
+    public void setElapsedTime(String elapsedTime){
+        this.elapsedTime = elapsedTime;
     }
 
     @Override

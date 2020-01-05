@@ -1,7 +1,6 @@
 package jss;
 
 import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -9,7 +8,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Controller {   //Inits some UI things along with variables.
@@ -38,6 +36,8 @@ public class Controller {   //Inits some UI things along with variables.
     private long startTime;
     private long elapsedTime;
     private int elapsedSeconds;
+    private int elapsedMinutes;
+    private int elapsedHours;
     int additionalStartTime = 0;
 
     //TODO add saving and loading through XML,
@@ -48,8 +48,9 @@ public class Controller {   //Inits some UI things along with variables.
     public void initialize(){   //Init the table columns, and set the timer.
         clmName.setCellValueFactory(new PropertyValueFactory<>("name"));
         clmOffset.setCellValueFactory(new PropertyValueFactory<>("timeOffset"));
-        clmStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-        clmEndTime.setCellValueFactory(new PropertyValueFactory<>("finishTime"));
+        clmStartTime.setCellValueFactory(new PropertyValueFactory<>("startClock"));
+        clmEndTime.setCellValueFactory(new PropertyValueFactory<>("finishClock"));
+        clmTime.setCellValueFactory(new PropertyValueFactory<>("elapsedTime"));
 
         new AnimationTimer(){
             @Override
@@ -57,8 +58,8 @@ public class Controller {   //Inits some UI things along with variables.
                 if(started) {
                     elapsedTime = System.currentTimeMillis() - startTime;
                     elapsedSeconds = (int) (elapsedTime / 1000);
-                    int elapsedMinutes = elapsedSeconds / 60;
-                    int elapsedHours = elapsedMinutes / 60;
+                    elapsedMinutes = elapsedSeconds / 60;
+                    elapsedHours = elapsedMinutes / 60;
 
                     lblTimer.setText(elapsedHours + ":" + timeFormat.format(elapsedMinutes) + ":" + secondFormat.format((Math.floor(elapsedTime/10.0) / 100)%60).replace(',', '.'));
                 }
@@ -99,7 +100,29 @@ public class Controller {   //Inits some UI things along with variables.
     }
 
     public void btnStop() {
-        timerToggle("stop");
+        Date finishClock = new Date();
+        int selectedTableCell = tblTable.getSelectionModel().getFocusedIndex();
+
+        xml.get(selectedTableCell).setSkiing(false);
+        xml.get(selectedTableCell).setFinishClock(dateFormat.format(finishClock));
+        xml.get(selectedTableCell).setLastTime(elapsedTime);    //this might be a bit confusing right here. 'LastTime' refers to the time it took to finish the race in milliseconds, ElapsedTime is a string which just displays that number in a better fashion.
+        xml.get(selectedTableCell).setElapsedTime(elapsedHours + ":" + timeFormat.format(elapsedMinutes) + ":" + secondFormat.format((Math.floor(elapsedTime/10.0) / 100)%60).replace(',', '.'));
+        tblTable.getItems().set(selectedTableCell, xml.get(selectedTableCell));
+
+        tblTable.getSelectionModel().selectNext();
+
+
+
+        //timerToggle("stop");
+    }
+
+    private void massStart(){
+        Date startClock = new Date();
+        for (int i = 0; i < xml.size(); i++) {
+            xml.get(i).setSkiing(true);
+            xml.get(i).setStartClock(dateFormat.format(startClock));
+            tblTable.getItems().set(i, xml.get(i));
+        }
     }
 
     private void timerToggle(String toggle){ //Toggles between the timer being 'on' and not.
@@ -114,11 +137,9 @@ public class Controller {   //Inits some UI things along with variables.
                 btnStart.setDisable(true);
                 btnStop.setDisable(false);
 
-                radioMass.setDisable(true);
-                radioHunting.setDisable(true);
-                radioIndividual.setDisable(true);
-                radio15.setDisable(true);
-                radio30.setDisable(true);
+                if(radioMass.isSelected()) {
+                    massStart();
+                }
             break;
 
             case "stop":
