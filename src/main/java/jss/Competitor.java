@@ -4,9 +4,9 @@ public class Competitor {
     private String name;
     private String startClock = null;
     private String finishClock = null;
-    private String elapsedTime = null;
+    private String elapsedTimeDisplay = null;
     private boolean skiing;
-    private long lastTime;
+    private long elapsedTime;
     private int timeOffset;
 
 
@@ -19,7 +19,7 @@ public class Competitor {
     public String getName() {
         return name;
     }
-    public double getLastTime(){return lastTime;}
+    public double getElapsedTime(){return elapsedTime;}
     public boolean isSkiing(){return skiing;}
     public String getFinishClock() {
         return finishClock;
@@ -27,13 +27,13 @@ public class Competitor {
     public String getStartClock() {
         return startClock;
     }
-    public String getElapsedTime(){
-        return elapsedTime;
+    public String getElapsedTimeDisplay(){
+        return elapsedTimeDisplay;
     }
     public int getTimeOffset(){return timeOffset;}
 
-    public void setLastTime(long lastTime){
-        this.lastTime = lastTime - timeOffset*1000; //Have their finishtime in milliseconds be subtracted by their offset (to calculate actual time spent skiing)
+    public void setElapsedTime(long elapsedTime){
+        this.elapsedTime = elapsedTime;
     }
     public void setSkiing(Boolean skiing){
         this.skiing = skiing;
@@ -45,8 +45,8 @@ public class Competitor {
         this.finishClock = finishClock;
     }
 
-    public void setElapsedTime(String elapsedTime){
-        this.elapsedTime = elapsedTime;
+    public void setElapsedTimeDisplay(String elapsedTimeDisplay){
+        this.elapsedTimeDisplay = elapsedTimeDisplay;
     }
 
     @Override

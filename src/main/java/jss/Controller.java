@@ -51,7 +51,7 @@ public class Controller {   //Inits some UI things along with variables.
         clmOffset.setCellValueFactory(new PropertyValueFactory<>("timeOffset"));
         clmStartTime.setCellValueFactory(new PropertyValueFactory<>("startClock"));
         clmEndTime.setCellValueFactory(new PropertyValueFactory<>("finishClock"));
-        clmTime.setCellValueFactory(new PropertyValueFactory<>("elapsedTime"));
+        clmTime.setCellValueFactory(new PropertyValueFactory<>("elapsedTimeDisplay"));
 
         new AnimationTimer(){
             @Override
@@ -62,7 +62,7 @@ public class Controller {   //Inits some UI things along with variables.
                     elapsedMinutes = elapsedSeconds / 60;
                     elapsedHours = elapsedMinutes / 60;
 
-                    lblTimer.setText(elapsedHours + ":" + timeFormat.format(elapsedMinutes) + ":" + secondFormat.format((Math.floor(elapsedTime/10.0) / 100)%60).replace(',', '.'));
+                    lblTimer.setText(elapsedHours + ":" + timeFormat.format(elapsedMinutes) + ":" + secondFormat.format((Math.floor(elapsedTime/10.0) / 100) % 60).replace(',', '.'));
 
                     try{
                         if(skiingIndex <= xml.size() && radioIndividual.isSelected() && elapsedSeconds == xml.get(skiingIndex).getTimeOffset()){
@@ -117,8 +117,13 @@ public class Controller {   //Inits some UI things along with variables.
 
         xml.get(selectedTableCell).setSkiing(false);
         xml.get(selectedTableCell).setFinishClock(dateFormat.format(finishClock));
-        xml.get(selectedTableCell).setLastTime(elapsedTime);    //this might be a bit confusing right here. 'LastTime' refers to the time it took to finish the race in milliseconds, ElapsedTime is a string which just displays that number in a better fashion.
-        xml.get(selectedTableCell).setElapsedTime(elapsedHours + ":" + timeFormat.format(elapsedMinutes) + ":" + secondFormat.format((Math.floor(elapsedTime/10.0) / 100)%60).replace(',', '.'));
+        xml.get(selectedTableCell).setElapsedTime(elapsedTime - xml.get(selectedTableCell).getTimeOffset()*1000);    //refers to the time it took to finish the race in milliseconds
+
+        double tempSeconds = xml.get(selectedTableCell).getElapsedTime()/1000;
+        int tempMinutes = (int)tempSeconds / 60;
+        int tempHours = tempMinutes / 60;
+
+        xml.get(selectedTableCell).setElapsedTimeDisplay(tempHours + ":" + timeFormat.format(tempMinutes) + ":" + secondFormat.format(tempSeconds).replace(',', '.'));
         tblTable.getItems().set(selectedTableCell, xml.get(selectedTableCell));
 
         tblTable.getSelectionModel().selectNext();
