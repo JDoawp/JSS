@@ -71,8 +71,8 @@ public class Controller {   //Inits some UI things along with variables.
         xml.add(new Competitor(txtName.getText(), additionalStartTime));
         btnStart.setDisable(false);
 
-        if(radioHunting.isSelected()){
-            radioIndividual.setDisable(true);
+        if(radioIndividual.isSelected()){
+            radioHunting.setDisable(true);
             radioMass.setDisable(true);
             if(radio15.isSelected()){
                 additionalStartTime += 15;
@@ -81,8 +81,8 @@ public class Controller {   //Inits some UI things along with variables.
                 additionalStartTime += 30;
                 radio15.setDisable(true);
             }
-        }else if(radioIndividual.isSelected()){
-            radioHunting.setDisable(true);
+        }else if(radioHunting.isSelected()){
+            radioIndividual.setDisable(true);
             radioMass.setDisable(true);
             radio15.setDisable(true);
             radio30.setDisable(true);
@@ -140,6 +140,10 @@ public class Controller {   //Inits some UI things along with variables.
         }
     }
 
+    private void individualStart(){
+
+    }
+
     private void timerToggle(String toggle){ //Toggles between the timer being 'on' and not.
         switch(toggle){
             case "start":
@@ -154,6 +158,8 @@ public class Controller {   //Inits some UI things along with variables.
 
                 if(radioMass.isSelected()) {
                     massStart();
+                }else if(radioIndividual.isSelected()){
+                    individualStart();
                 }
             break;
 

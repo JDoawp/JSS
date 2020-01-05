@@ -51,7 +51,7 @@
                               <ToggleGroup fx:id="raceType" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="radioHunting" mnemonicParsing="false" prefHeight="17.0" text="Hunting Start" toggleGroup="$raceType">
+                        <RadioButton fx:id="radioIndividual" mnemonicParsing="false" prefHeight="17.0" text="Individuell Start" toggleGroup="$raceType">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
@@ -79,7 +79,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <RadioButton fx:id="radioIndividual" mnemonicParsing="false" prefHeight="17.0" text="Individuell Start" toggleGroup="$raceType">
+                        <RadioButton fx:id="radioHunting" mnemonicParsing="false" prefHeight="17.0" text="Hunting Start" toggleGroup="$raceType">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>

@@ -32,7 +32,7 @@ public class Competitor {
     public int getTimeOffset(){return timeOffset;}
 
     public void setLastTime(long lastTime){
-        this.lastTime = lastTime;
+        this.lastTime = lastTime - timeOffset*1000; //Have their finishtime in milliseconds be subtracted by their offset (to calculate actual time spent skiing)
     }
     public void setSkiing(Boolean skiing){
         this.skiing = skiing;
