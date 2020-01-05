@@ -5,14 +5,15 @@ public class Competitor {
     private String startClock = null;
     private String finishClock = null;
     private String elapsedTime = null;
-    private boolean skiing = false;
+    private boolean skiing;
     private long lastTime;
     private int timeOffset;
 
 
-    Competitor(String name, int timeOffset){
+    Competitor(String name, int timeOffset, boolean skiing){
         this.name = name;
         this.timeOffset = timeOffset;
+        this.skiing = skiing;
     }
 
     public String getName() {

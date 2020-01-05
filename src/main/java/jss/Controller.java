@@ -39,6 +39,7 @@ public class Controller {   //Inits some UI things along with variables.
     private int elapsedMinutes;
     private int elapsedHours;
     int additionalStartTime = 0;
+    private int skiingIndex = 0;
 
     //TODO add saving and loading through XML,
     // Add functionality for different types of starts
@@ -62,13 +63,22 @@ public class Controller {   //Inits some UI things along with variables.
                     elapsedHours = elapsedMinutes / 60;
 
                     lblTimer.setText(elapsedHours + ":" + timeFormat.format(elapsedMinutes) + ":" + secondFormat.format((Math.floor(elapsedTime/10.0) / 100)%60).replace(',', '.'));
+
+                    try{
+                        if(skiingIndex <= xml.size() && radioIndividual.isSelected() && elapsedSeconds == xml.get(skiingIndex).getTimeOffset()){
+                            individualStart();
+                        }
+                    }catch (IndexOutOfBoundsException e){
+                        //Do nothing the outOfBounds is from the last statement in the if case and it's just gonna be out of bounds after all skiiers have went.
+                    }
+
                 }
             }
         }.start();
     }
 
     public void btnAdd(){   //Adds a competitor from the text field.
-        xml.add(new Competitor(txtName.getText(), additionalStartTime));
+        xml.add(new Competitor(txtName.getText(), additionalStartTime, true));
         btnStart.setDisable(false);
 
         if(radioIndividual.isSelected()){
@@ -134,14 +144,17 @@ public class Controller {   //Inits some UI things along with variables.
     private void massStart(){
         Date startClock = new Date();
         for (int i = 0; i < xml.size(); i++) {
-            xml.get(i).setSkiing(true);
             xml.get(i).setStartClock(dateFormat.format(startClock));
             tblTable.getItems().set(i, xml.get(i));
         }
     }
 
     private void individualStart(){
-
+        System.out.println("Ind start: " +skiingIndex);
+        Date startClock = new Date();
+        xml.get(skiingIndex).setStartClock((dateFormat.format(startClock)));
+        tblTable.getItems().set(skiingIndex, xml.get(skiingIndex));
+        skiingIndex++;
     }
 
     private void timerToggle(String toggle){ //Toggles between the timer being 'on' and not.
@@ -158,8 +171,6 @@ public class Controller {   //Inits some UI things along with variables.
 
                 if(radioMass.isSelected()) {
                     massStart();
-                }else if(radioIndividual.isSelected()){
-                    individualStart();
                 }
             break;
 
