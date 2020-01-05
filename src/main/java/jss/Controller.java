@@ -69,6 +69,8 @@ public class Controller {   //Inits some UI things along with variables.
 
     public void btnAdd(){   //Adds a competitor from the text field.
         xml.add(new Competitor(txtName.getText(), additionalStartTime));
+        btnStart.setDisable(false);
+
         if(radioHunting.isSelected()){
             radioIndividual.setDisable(true);
             radioMass.setDisable(true);
@@ -110,10 +112,23 @@ public class Controller {   //Inits some UI things along with variables.
         tblTable.getItems().set(selectedTableCell, xml.get(selectedTableCell));
 
         tblTable.getSelectionModel().selectNext();
+        boolean allStopped = false;
 
+        for(int i = 0; i < xml.size(); i++){    //Checking all competitors to see if they've stopped skiing, if they have the allStopped will be true
+            if(xml.get(i).isSkiing()){
+                //Someone is still skiing
+                allStopped = false;
+                break;
+            }else if(!xml.get(i).isSkiing()){
+                allStopped = true;
+            }
+        }
 
-
-        //timerToggle("stop");
+        if(allStopped){
+            System.out.println("Everyone has stopped skiing");
+            timerToggle("stop");
+            btnStop.setDisable(true);
+        }
     }
 
     private void massStart(){
