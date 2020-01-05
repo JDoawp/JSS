@@ -66,7 +66,6 @@ public class Controller {   //Inits some UI things along with variables.
         }.start();
     }
 
-
     public void btnAdd(){   //Adds a competitor from the text field.
         xml.add(new Competitor(txtName.getText(), additionalStartTime));
         if(radioHunting.isSelected()){
@@ -96,39 +95,42 @@ public class Controller {   //Inits some UI things along with variables.
     }
 
     public void btnStart() {
-        timerToggle();
+        timerToggle("start");
     }
 
     public void btnStop() {
-        timerToggle();;
+        timerToggle("stop");
     }
 
-    private void timerToggle(){ //Toggles between the timer being 'on' and not.
-        if(!started){
-            startTime = System.currentTimeMillis();
-            System.out.println("startTime in millis: " +startTime);
-            System.out.println("Timer On");
-            started = true;
+    private void timerToggle(String toggle){ //Toggles between the timer being 'on' and not.
+        switch(toggle){
+            case "start":
+                startTime = System.currentTimeMillis();
+                System.out.println("startTime in millis: " +startTime);
+                System.out.println("Timer On");
+                started = true;
 
-            btnAdd.setDisable(true);
-            btnStart.setDisable(true);
-            btnStop.setDisable(false);
+                btnAdd.setDisable(true);
+                btnStart.setDisable(true);
+                btnStop.setDisable(false);
 
-            radioMass.setDisable(true);
-            radioHunting.setDisable(true);
-            radioIndividual.setDisable(true);
-            radio15.setDisable(true);
-            radio30.setDisable(true);
+                radioMass.setDisable(true);
+                radioHunting.setDisable(true);
+                radioIndividual.setDisable(true);
+                radio15.setDisable(true);
+                radio30.setDisable(true);
+            break;
 
-        }else{
-            started = false;
-            System.out.println("stopTime in millis: " +System.currentTimeMillis());
-            System.out.println("Milli time difference: " +(System.currentTimeMillis() - startTime) +" Second time difference: " +(System.currentTimeMillis() - startTime)/1000);
-            System.out.println("Timer off");
+            case "stop":
+                started = false;
+                System.out.println("stopTime in millis: " +System.currentTimeMillis());
+                System.out.println("Milli time difference: " +(System.currentTimeMillis() - startTime) +" Second time difference: " +(System.currentTimeMillis() - startTime)/1000);
+                System.out.println("Timer off");
 
-            btnAdd.setDisable(false);
-            btnStart.setDisable(false);
-            btnStop.setDisable(true);
+                btnAdd.setDisable(false);
+                btnStart.setDisable(false);
+                btnStop.setDisable(true);
+            break;
         }
     }
 
