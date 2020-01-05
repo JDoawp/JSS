@@ -1,6 +1,7 @@
 package jss;
 
 import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,12 +32,13 @@ public class Controller {   //Inits some UI things along with variables.
     private SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     private NumberFormat secondFormat = new DecimalFormat("00.00");
     private NumberFormat timeFormat = new DecimalFormat("00");
+    private XMLHandler xml = new XMLHandler();
 
     private boolean started = false;
     private long startTime;
     private long elapsedTime;
     private int elapsedSeconds;
-    XMLHandler xml = new XMLHandler();
+    int additionalStartTime = 0;
 
     //TODO add saving and loading through XML,
     // Add functionality for different types of starts
@@ -64,10 +66,12 @@ public class Controller {   //Inits some UI things along with variables.
         }.start();
     }
 
-    int additionalStartTime = 0;
+
     public void btnAdd(){   //Adds a competitor from the text field.
         xml.add(new Competitor(txtName.getText(), additionalStartTime));
         if(radioHunting.isSelected()){
+            radioIndividual.setDisable(true);
+            radioMass.setDisable(true);
             if(radio15.isSelected()){
                 additionalStartTime += 15;
                 radio30.setDisable(true);
@@ -75,6 +79,16 @@ public class Controller {   //Inits some UI things along with variables.
                 additionalStartTime += 30;
                 radio15.setDisable(true);
             }
+        }else if(radioIndividual.isSelected()){
+            radioHunting.setDisable(true);
+            radioMass.setDisable(true);
+            radio15.setDisable(true);
+            radio30.setDisable(true);
+        }else{ //Radio Mass is selected
+            radioHunting.setDisable(true);
+            radioIndividual.setDisable(true);
+            radio15.setDisable(true);
+            radio30.setDisable(true);
         }
 
         tblTable.getItems().add(xml.get(xml.size()-1));
@@ -99,6 +113,13 @@ public class Controller {   //Inits some UI things along with variables.
             btnAdd.setDisable(true);
             btnStart.setDisable(true);
             btnStop.setDisable(false);
+
+            radioMass.setDisable(true);
+            radioHunting.setDisable(true);
+            radioIndividual.setDisable(true);
+            radio15.setDisable(true);
+            radio30.setDisable(true);
+
         }else{
             started = false;
             System.out.println("stopTime in millis: " +System.currentTimeMillis());
@@ -109,5 +130,8 @@ public class Controller {   //Inits some UI things along with variables.
             btnStart.setDisable(false);
             btnStop.setDisable(true);
         }
+    }
+
+    public void btnLoad(){ //Load competitors
     }
 }
