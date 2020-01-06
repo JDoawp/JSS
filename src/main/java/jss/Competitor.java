@@ -45,6 +45,9 @@ public class Competitor implements Comparable<Competitor> {
     public void setFinishClock(String finishClock){
         this.finishClock = finishClock;
     }
+    public void setTimeOffset(int offset){
+        this.timeOffset = offset;
+    }
 
     public void setElapsedTimeDisplay(String elapsedTimeDisplay){
         this.elapsedTimeDisplay = elapsedTimeDisplay;
@@ -52,7 +55,7 @@ public class Competitor implements Comparable<Competitor> {
 
     @Override
     public String toString() {
-        return name +" with timeOffset: " +timeOffset +" seconds.";
+        return name +" with timeOffset: " +timeOffset +"s, elapsedTime: " +elapsedTime;
     }
 
     @Override   //For sorting by elapsedTime

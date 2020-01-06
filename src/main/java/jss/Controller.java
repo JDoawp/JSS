@@ -65,8 +65,8 @@ public class Controller {   //Inits some UI things along with variables.
                     lblTimer.setText(elapsedHours + ":" + timeFormat.format(elapsedMinutes) + ":" + secondFormat.format((Math.floor(elapsedTime/10.0) / 100) % 60).replace(',', '.'));
 
                     try{
-                        if(skiingIndex <= xml.size() && radioIndividual.isSelected() && elapsedSeconds == xml.get(skiingIndex).getTimeOffset()){
-                            individualStart();
+                        if(skiingIndex <= xml.size() && (radioIndividual.isSelected() || radioHunting.isSelected()) && elapsedSeconds == xml.get(skiingIndex).getTimeOffset()){
+                            delayedStart();
                         }
                     }catch (IndexOutOfBoundsException e){
                         //Do nothing the outOfBounds is from the last statement in the if case and it's just gonna be out of bounds after all skiiers have went.
@@ -154,8 +154,8 @@ public class Controller {   //Inits some UI things along with variables.
         }
     }
 
-    private void individualStart(){
-        System.out.println("Ind start: " +skiingIndex);
+    private void delayedStart(){
+        System.out.println("Delayed start: " +skiingIndex);
         Date startClock = new Date();
         xml.get(skiingIndex).setStartClock((dateFormat.format(startClock)));
         tblTable.getItems().set(skiingIndex, xml.get(skiingIndex));
@@ -187,17 +187,34 @@ public class Controller {   //Inits some UI things along with variables.
                 btnStop.setDisable(true);
 
                 xml.sort();
+                calculateOffset();
                 xml.save();
-                System.out.println(xml.get(1).compareTo(xml.get(0)));
             break;
+        }
+    }
+
+    private void calculateOffset(){
+        xml.get(0).setTimeOffset(0);
+        for(int i = 1; i < xml.size(); i++){
+            //Takes the elapsedTime (milliseconds) of the previous contestant and subtract it by the elapsedTime of the current contestant then divide that by 1000 to get a second value
+            System.out.println(xml.get(i).toString() + " minus previous contestant: " +xml.get(i-1).toString());
+            xml.get(i).setTimeOffset((int)(xml.get(i).getElapsedTime()-xml.get(i-1).getElapsedTime())/1000);
+            System.out.println(xml.get(i).toString());
         }
     }
 
     public void btnLoad(){ //Load competitors
         xml.load();
-
         for(int i = 0; i < xml.size(); i++){
             tblTable.getItems().add(xml.get(i));
         }
+
+        btnStart.setDisable(false);
+        radioIndividual.setDisable(true);
+        radioMass.setDisable(true);
+        radio15.setDisable(true);
+        radio30.setDisable(true);
+        radioHunting.setSelected(true);
+
     }
 }

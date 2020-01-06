@@ -20,12 +20,12 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="68.0" prefWidth="231.0">
                      <children>
-                        <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAdd" prefHeight="50.0" text="Lägg till tävlare">
+                        <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAdd" prefHeight="50.0" prefWidth="100.0" text="Lägg till tävlare">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#btnLoad" prefHeight="50.0" text="Ladda tävlare">
+                        <Button mnemonicParsing="false" onAction="#btnLoad" prefHeight="50.0" prefWidth="100.0" text="Ladda tävlare">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -107,7 +107,6 @@
             </Button>
          </children>
       </HBox>
-      <TextField fx:id="txtOffset" />
       <Label fx:id="lblTimer" alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="450.0" text="0:00:00.00">
          <font>
             <Font size="45.0" />
