@@ -11,17 +11,16 @@ public class XMLHandler{
     private ArrayList<Competitor> competitorList = new ArrayList<>();
 
     XMLHandler(){
+        xstream.autodetectAnnotations(true);
     }
 
     //Add some basic arrayList functions to the public scope.
     public void add(Competitor competitor){
         competitorList.add(competitor);
     }
-
     public Competitor get(int index){
         return competitorList.get(index);
     }
-
     public int size(){
         return competitorList.size();
     }
@@ -32,8 +31,8 @@ public class XMLHandler{
         System.out.println("Sorted by smallest elapsedTime");
     }
 
-    //TODO Add actual comments here
-    void save() {      //Uses XStreams ObjectOutput to save all Objects to a neatly formatted XML
+    //Uses XStreams ObjectOutput to save all Objects to a neatly formatted XML
+    void save() {
         try {
             ObjectOutputStream output = xstream.createObjectOutputStream(new FileOutputStream("competitors.xml"));
 
@@ -50,16 +49,15 @@ public class XMLHandler{
     }
 
     @SuppressWarnings("InfiniteLoopStatement")      //It's on purpose.
-    boolean load() {        //Uses XStreams ObjectInput to load all Objects from an XML
+    // Uses XStreams ObjectInput to load all Objects from an XML
+    boolean load() {
         try{
             ObjectInputStream input = xstream.createObjectInputStream(new FileInputStream("competitors.xml"));
             int i = 0;  //Init outside while-loop to remember how many was stored
             try{
                 while(true){
-                    competitorList.add((Competitor)input.readObject());
+                    competitorList.add((Competitor)input.readObject());     //Add the object into the arrayList, set skiing,  then reset their elapsedTime display.
                     competitorList.get(i).setSkiing(true);
-                    competitorList.get(i).setStartClock(null);
-                    competitorList.get(i).setFinishClock(null);
                     competitorList.get(i).setElapsedTimeDisplay(null);
                     i-=-1;      //i++ looks so unbalanced, this way it looks much better
                 }

@@ -25,7 +25,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#btnLoad" prefHeight="50.0" prefWidth="100.0" text="Ladda tävlare">
+                        <Button fx:id="btnLoad" mnemonicParsing="false" onAction="#btnLoad" prefHeight="50.0" prefWidth="100.0" text="Ladda tävlare">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -79,7 +79,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <RadioButton fx:id="radioHunting" mnemonicParsing="false" prefHeight="17.0" text="Hunting Start" toggleGroup="$raceType">
+                        <RadioButton fx:id="radioHunting" disable="true" mnemonicParsing="false" prefHeight="17.0" text="Hunting Start" toggleGroup="$raceType">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
