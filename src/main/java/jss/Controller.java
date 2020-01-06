@@ -22,6 +22,7 @@ public class Controller {   //Inits some UI things along with variables.
     public RadioButton radio30;
     public RadioButton radioIndividual;
     public TextField txtName;
+    public TextField txtOffset;
     public TableColumn clmOffset;
     @FXML TableView<Competitor> tblTable = new TableView<>();
     @FXML TableColumn clmName = new TableColumn();
@@ -42,8 +43,7 @@ public class Controller {   //Inits some UI things along with variables.
     private int skiingIndex = 0;
 
     //TODO add saving and loading through XML,
-    // Add functionality for different types of starts
-    // Add actual start and stop functionality for competitors (start the timer with the first competitor and end it with the last one)
+    // Hunting Start
     // ,
 
     public void initialize(){   //Init the table columns, and set the timer.
@@ -184,14 +184,20 @@ public class Controller {   //Inits some UI things along with variables.
                 System.out.println("stopTime in millis: " +System.currentTimeMillis());
                 System.out.println("Milli time difference: " +(System.currentTimeMillis() - startTime) +" Second time difference: " +(System.currentTimeMillis() - startTime)/1000);
                 System.out.println("Timer off");
-
-                btnAdd.setDisable(false);
-                btnStart.setDisable(false);
                 btnStop.setDisable(true);
+
+                xml.sort();
+                xml.save();
+                System.out.println(xml.get(1).compareTo(xml.get(0)));
             break;
         }
     }
 
     public void btnLoad(){ //Load competitors
+        xml.load();
+
+        for(int i = 0; i < xml.size(); i++){
+            tblTable.getItems().add(xml.get(i));
+        }
     }
 }

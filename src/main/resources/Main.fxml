@@ -107,6 +107,7 @@
             </Button>
          </children>
       </HBox>
+      <TextField fx:id="txtOffset" />
       <Label fx:id="lblTimer" alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="450.0" text="0:00:00.00">
          <font>
             <Font size="45.0" />

@@ -3,6 +3,7 @@ package jss;
 import com.thoughtworks.xstream.XStream;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 //This class handles both all the XML stuff (using XStream) and holds the list of arrays.
 public class XMLHandler{
@@ -25,10 +26,14 @@ public class XMLHandler{
         return competitorList.size();
     }
 
-    //These are the same from last time
-    void save() {      //Uses XStreams ObjectOutput to save all Objects to a neatly formatted XML
-        xstream.alias("Competitor", Competitor.class);
+    //Sorts so the winner comes first
+    public void sort(){
+        Collections.sort(competitorList);
+        System.out.println("Sorted by smallest elapsedTime");
+    }
 
+    //TODO Add actual comments here
+    void save() {      //Uses XStreams ObjectOutput to save all Objects to a neatly formatted XML
         try {
             ObjectOutputStream output = xstream.createObjectOutputStream(new FileOutputStream("competitors.xml"));
 
@@ -52,6 +57,10 @@ public class XMLHandler{
             try{
                 while(true){
                     competitorList.add((Competitor)input.readObject());
+                    competitorList.get(i).setSkiing(true);
+                    competitorList.get(i).setStartClock(null);
+                    competitorList.get(i).setFinishClock(null);
+                    competitorList.get(i).setElapsedTimeDisplay(null);
                     i-=-1;      //i++ looks so unbalanced, this way it looks much better
                 }
             }catch(EOFException | ClassNotFoundException e){

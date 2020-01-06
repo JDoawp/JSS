@@ -1,12 +1,13 @@
 package jss;
 
-public class Competitor {
+public class Competitor implements Comparable<Competitor> {
     private String name;
     private String startClock = null;
     private String finishClock = null;
     private String elapsedTimeDisplay = null;
+
     private boolean skiing;
-    private long elapsedTime;
+    private double elapsedTime;
     private int timeOffset;
 
 
@@ -23,7 +24,7 @@ public class Competitor {
     public boolean isSkiing(){return skiing;}
     public String getFinishClock() {
         return finishClock;
-    }
+    }   //These are used but the IDE doesn't know it.
     public String getStartClock() {
         return startClock;
     }
@@ -51,6 +52,12 @@ public class Competitor {
 
     @Override
     public String toString() {
-        return name +" with timeOffset: " +timeOffset +" seconds, their skiing status is: " +skiing;
+        return name +" with timeOffset: " +timeOffset +" seconds.";
+    }
+
+    @Override   //For sorting by elapsedTime
+    public int compareTo(Competitor competitor) {
+        int compareElapsedTime = (int) competitor.getElapsedTime();
+        return (int)this.elapsedTime-compareElapsedTime;
     }
 }
