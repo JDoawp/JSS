@@ -11,7 +11,7 @@ public class XMLHandler{
     private ArrayList<Competitor> competitorList = new ArrayList<>();
 
     XMLHandler(){
-        xstream.autodetectAnnotations(true);
+        xstream.autodetectAnnotations(true);    //Makes the annotations work.
     }
 
     //Add some basic arrayList functions to the public scope.
@@ -50,7 +50,7 @@ public class XMLHandler{
 
     @SuppressWarnings("InfiniteLoopStatement")      //It's on purpose.
     // Uses XStreams ObjectInput to load all Objects from an XML
-    boolean load() {
+    void load() {
         try{
             ObjectInputStream input = xstream.createObjectInputStream(new FileInputStream("competitors.xml"));
             int i = 0;  //Init outside while-loop to remember how many was stored
@@ -66,10 +66,8 @@ public class XMLHandler{
             }
 
             input.close();
-            return true;
         }catch(IOException e){
             System.out.println("No XML file found.");
-            return false;
         }
     }
 }

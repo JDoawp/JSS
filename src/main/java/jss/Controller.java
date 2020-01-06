@@ -42,8 +42,6 @@ public class Controller {   //Inits some UI things along with variables.
     int additionalStartTime = 0;
     private int skiingIndex = 0;
 
-    //TODO
-
     public void initialize(){   //Init the table columns, and set the timer.
 
 
