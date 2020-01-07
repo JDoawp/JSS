@@ -1,0 +1,33 @@
+______/\\\\\\\\\\\_____/\\\\\\\\\\\_______/\\\\\\\\\\\___
+ _____\/////\\\///____/\\\/////////\\\___/\\\/////////\\\_
+  _________\/\\\______\//\\\______\///___\//\\\______\///__
+   _________\/\\\_______\////\\\___________\////\\\_________
+    _________\/\\\__________\////\\\___________\////\\\______
+     _________\/\\\_____________\////\\\___________\////\\\___
+      __/\\\___\/\\\______/\\\______\//\\\___/\\\______\//\\\__
+       _\//\\\\\\\\\______\///\\\\\\\\\\\/___\///\\\\\\\\\\\/___
+        __\/////////_________\///////////_______\///////////_____
+
+
+
+
+How to open in IntelliJ (hopefully).
+
+-Import from VCS
+-Hope to god it also took the settings as I've shared those through VCS
+-If not, go to Application Settings, make a new template as Application:
+    Main Class: jss.Main
+    Class Path: JSS
+    JRE: 1.8 SDK
+
+Project Structure (ctrl+alt+shift+s):
+    Project SDK: Java 1.8 (Java version 1.8.0_221)
+    Language Level: 8
+
+Settings (ctrl+alt+s):
+    Compiler -> Java Compiler
+    Compuler: Javac
+    Module: JSS
+    Bytecode: 8
+
+That should hopefully be it.
