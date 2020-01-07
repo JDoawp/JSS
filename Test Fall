@@ -1,0 +1,15 @@
+Normal use:
+    Expected result: User should be able to add competitors, start a race in whichever racetype they want, stop the clock for individual contestants, save and load the results from previous race.
+    Result: Works as intended
+
+Name with abnormal characters:
+    Expected result: Name shall appear with given chars.
+    Result: Name is handled as intended and displayed with abnormal chars.
+
+Open 2 instances of the program and end one race, than the other:
+    Expected result: Unless moved the exported competitors.xml will be overwritten.
+    Result: As expected.
+
+Manually removing the competitors xml while having it loaded.
+    Expected result: Nothing out of the ordinary.
+    Result: Nothing happens.
