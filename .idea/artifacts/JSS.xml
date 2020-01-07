@@ -1,0 +1,25 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="JSS">
+    <output-path>$PROJECT_DIR$/out/artifacts/JSS</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="JSS.Main" />
+        <option name="description" value="" />
+        <option name="height" value="520" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="Skid Timer" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+        <option name="width" value="450" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="JSS.jar">
+        <element id="module-output" name="JSS" />
+        <element id="library" level="project" name="Maven: xmlpull:xmlpull:1.1.3.1" />
+        <element id="library" level="project" name="Maven: com.thoughtworks.xstream:xstream:1.4.11.1" />
+        <element id="library" level="project" name="Maven: xpp3:xpp3_min:1.1.4c" />
+      </element>
+    </root>
+  </artifact>
+</component>
