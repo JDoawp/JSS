@@ -12,117 +12,115 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="520.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jss.Controller">
-   <children>
-      <HBox alignment="CENTER" prefHeight="150.0" prefWidth="351.0">
-         <children>
-            <VBox prefHeight="120.0" prefWidth="250.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="68.0" prefWidth="231.0">
-                     <children>
-                        <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAdd" prefHeight="50.0" prefWidth="100.0" text="Lägg till tävlare">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button fx:id="btnLoad" mnemonicParsing="false" onAction="#btnLoad" prefHeight="50.0" prefWidth="100.0" text="Ladda tävlare">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <TextField fx:id="txtName" prefWidth="798.0" promptText="Tävlar Namn">
-                     <VBox.margin>
-                        <Insets left="20.0" top="10.0" />
-                     </VBox.margin>
-                  </TextField>
-               </children>
-            </VBox>
-            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="225.0">
-               <children>
-                  <VBox prefHeight="150.0" prefWidth="140.0">
-                     <children>
-                        <RadioButton fx:id="radioMass" mnemonicParsing="false" prefHeight="17.0" selected="true" text="Mass Start">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="raceType" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="radioIndividual" mnemonicParsing="false" prefHeight="17.0" text="Individuell Start" toggleGroup="$raceType">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </RadioButton>
-                        <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="140.0">
-                           <children>
-                              <RadioButton fx:id="radio15" mnemonicParsing="false" selected="true" text="15s">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="huntingStartDelay" />
-                                 </toggleGroup>
-                              </RadioButton>
-                              <RadioButton fx:id="radio30" mnemonicParsing="false" text="30s" toggleGroup="$huntingStartDelay">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </RadioButton>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets left="15.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <RadioButton fx:id="radioHunting" disable="true" mnemonicParsing="false" prefHeight="17.0" text="Hunting Start" toggleGroup="$raceType">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </RadioButton>
-                     </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </VBox>
-               </children>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="520.0" prefWidth="450.0"
+      xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jss.Controller">
+   <HBox alignment="CENTER" prefHeight="150.0" prefWidth="351.0">
+      <VBox prefHeight="120.0" prefWidth="250.0">
+         <HBox alignment="CENTER" prefHeight="68.0" prefWidth="231.0">
+            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAdd" prefHeight="50.0"
+                    prefWidth="100.0" text="Lägg till tävlare">
+               <HBox.margin>
+                  <Insets left="10.0"/>
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnLoad" mnemonicParsing="false" onAction="#btnLoad" prefHeight="50.0"
+                    prefWidth="100.0" text="Ladda tävlare">
+               <HBox.margin>
+                  <Insets left="10.0"/>
+               </HBox.margin>
+            </Button>
+         </HBox>
+         <TextField fx:id="txtName" prefWidth="798.0" promptText="Tävlar Namn">
+            <VBox.margin>
+               <Insets left="20.0" top="10.0"/>
+            </VBox.margin>
+         </TextField>
+      </VBox>
+      <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="225.0">
+         <VBox prefHeight="150.0" prefWidth="140.0">
+            <HBox.margin>
+               <Insets/>
+            </HBox.margin>
+            <RadioButton fx:id="radioMass" mnemonicParsing="false" prefHeight="17.0" selected="true"
+                         text="Mass Start">
+               <VBox.margin>
+                  <Insets top="10.0"/>
+               </VBox.margin>
+               <toggleGroup>
+                  <ToggleGroup fx:id="raceType"/>
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="radioIndividual" mnemonicParsing="false" prefHeight="17.0"
+                         text="Individuell Start" toggleGroup="$raceType">
+               <VBox.margin>
+                  <Insets top="10.0"/>
+               </VBox.margin>
+            </RadioButton>
+            <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="140.0">
+               <opaqueInsets>
+                  <Insets/>
+               </opaqueInsets>
+               <padding>
+                  <Insets left="15.0"/>
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0"/>
+               </VBox.margin>
+               <RadioButton fx:id="radio15" mnemonicParsing="false" selected="true" text="15s">
+                  <toggleGroup>
+                     <ToggleGroup fx:id="huntingStartDelay"/>
+                  </toggleGroup>
+               </RadioButton>
+               <RadioButton fx:id="radio30" mnemonicParsing="false" text="30s"
+                            toggleGroup="$huntingStartDelay">
+                  <HBox.margin>
+                     <Insets left="10.0"/>
+                  </HBox.margin>
+               </RadioButton>
             </HBox>
-         </children>
+            <RadioButton fx:id="radioHunting" disable="true" mnemonicParsing="false" prefHeight="17.0"
+                         text="Hunting Start" toggleGroup="$raceType">
+               <VBox.margin>
+                  <Insets top="10.0"/>
+               </VBox.margin>
+            </RadioButton>
+         </VBox>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="450.0">
-         <children>
-            <Button fx:id="btnStart" disable="true" mnemonicParsing="false" onAction="#btnStart" prefHeight="50.0" prefWidth="200.0" text="Start">
-               <HBox.margin>
-                  <Insets top="10.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btnStop" disable="true" mnemonicParsing="false" onAction="#btnStop" prefHeight="50.0" prefWidth="200.0" text="Stop">
-               <HBox.margin>
-                  <Insets left="20.0" top="10.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-      <Label fx:id="lblTimer" alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="450.0" text="0:00:00.00">
-         <font>
-            <Font size="45.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tblTable" prefHeight="275.0" prefWidth="350.0">
-        <columns>
-          <TableColumn fx:id="clmName" editable="false" prefWidth="180.0" resizable="false" sortable="false" text="Namn" />
-            <TableColumn fx:id="clmOffset" editable="false" prefWidth="40.0" resizable="false" sortable="false" text="Offset" />
-          <TableColumn fx:id="clmStartTime" editable="false" prefWidth="70.0" resizable="false" sortable="false" text="Start Tid" />
-            <TableColumn fx:id="clmEndTime" editable="false" prefWidth="70.0" resizable="false" sortable="false" text="Slut Tid" />
-            <TableColumn fx:id="clmTime" editable="false" prefWidth="90.0" resizable="false" sortable="false" text="Tid" />
-        </columns>
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
-      </TableView>
-   </children>
+   </HBox>
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="450.0">
+      <Button fx:id="btnStart" disable="true" mnemonicParsing="false" onAction="#btnStart" prefHeight="50.0"
+              prefWidth="200.0" text="Start">
+         <HBox.margin>
+            <Insets top="10.0"/>
+         </HBox.margin>
+      </Button>
+      <Button fx:id="btnStop" disable="true" mnemonicParsing="false" onAction="#btnStop" prefHeight="50.0"
+              prefWidth="200.0" text="Stop">
+         <HBox.margin>
+            <Insets left="20.0" top="10.0"/>
+         </HBox.margin>
+      </Button>
+   </HBox>
+   <Label fx:id="lblTimer" alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="450.0"
+          text="0:00:00.00">
+      <font>
+         <Font size="45.0"/>
+      </font>
+   </Label>
+   <TableView fx:id="tblTable" prefHeight="275.0" prefWidth="350.0">
+      <columns>
+         <TableColumn fx:id="clmName" editable="false" prefWidth="180.0" resizable="false" sortable="false"
+                      text="Namn"/>
+         <TableColumn fx:id="clmOffset" editable="false" prefWidth="40.0" resizable="false" sortable="false"
+                      text="Offset"/>
+         <TableColumn fx:id="clmStartTime" editable="false" prefWidth="70.0" resizable="false" sortable="false"
+                      text="Start Tid"/>
+         <TableColumn fx:id="clmEndTime" editable="false" prefWidth="70.0" resizable="false" sortable="false"
+                      text="Slut Tid"/>
+         <TableColumn fx:id="clmTime" editable="false" prefWidth="90.0" resizable="false" sortable="false" text="Tid"/>
+      </columns>
+      <VBox.margin>
+         <Insets top="20.0"/>
+      </VBox.margin>
+   </TableView>
 </VBox>

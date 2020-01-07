@@ -1,0 +1,14 @@
+<object-stream>
+  <jss.Competitor>
+    <name>John Doe</name>
+    <elapsedTimeDisplay>0:00:02.56</elapsedTimeDisplay>
+    <elapsedTime>2558.0</elapsedTime>
+    <timeOffset>0</timeOffset>
+  </jss.Competitor>
+  <jss.Competitor>
+    <name>Ben Dover</name>
+    <elapsedTimeDisplay>0:00:05.61</elapsedTimeDisplay>
+    <elapsedTime>5613.0</elapsedTime>
+    <timeOffset>3</timeOffset>
+  </jss.Competitor>
+</object-stream>
