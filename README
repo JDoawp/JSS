@@ -38,4 +38,5 @@ How to open in Eclipse (hopefully):
 -Download as zip
 -Extract to a folder of your choice (I'd recommend it being named JSS)
 -Import the project in Eclipse (eclipse import files are included in the project)
--Pray to your gods of choice as I don't have eclipse nor do I know how to use it properly
+-Convert it to a Maven Project
+-Change the Compliance level to be at least 1.7
